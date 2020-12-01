@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="storeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="class_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code_class" Type="varchar(max)" />
+          <Property Name="name_class" Type="varchar(max)" />
+          <Property Name="location" Type="nvarchar(max)" />
+          <Property Name="number_of_type" Type="nvarchar(max)" />
+          <Property Name="nsn" Type="nvarchar(max)" />
+          <Property Name="s" Type="nvarchar(max)" />
+          <Property Name="d" Type="nvarchar(max)" />
+          <Property Name="mother_group" Type="nvarchar(max)" />
+          <Property Name="store_group" Type="nvarchar(max)" />
+          <Property Name="store_capacity" Type="int" />
+        </EntityType>
+        <EntityType Name="data_proccess">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_procces" Type="nvarchar(max)" />
+          <Property Name="number_process" Type="nvarchar(max)" />
+          <Property Name="date_process" Type="date" />
+          <Property Name="depter" Type="nvarchar(max)" />
+          <Property Name="location_depter" Type="nvarchar(max)" />
+          <Property Name="department_depter" Type="nvarchar(max)" />
+          <Property Name="creditor" Type="nvarchar(max)" />
+          <Property Name="location_creditor" Type="nvarchar(max)" />
+          <Property Name="department_creditor" Type="nvarchar(max)" />
+          <Property Name="count" Type="int" />
+          <Property Name="give_date" Type="nvarchar(max)" />
+          <Property Name="class_id" Type="int" />
+        </EntityType>
+        <Association Name="FK_data_proccess_class_data">
+          <End Role="class_data" Type="Self.class_data" Multiplicity="0..1" />
+          <End Role="data_proccess" Type="Self.data_proccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class_data">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data_proccess">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="storeModelStoreContainer">
+          <EntitySet Name="class_data" EntityType="Self.class_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="data_proccess" EntityType="Self.data_proccess" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_data_proccess_class_data" Association="Self.FK_data_proccess_class_data">
+            <End Role="class_data" EntitySet="class_data" />
+            <End Role="data_proccess" EntitySet="data_proccess" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="storeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="class_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code_class" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="name_class" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="number_of_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nsn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="s" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="d" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mother_group" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="store_group" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="store_capacity" Type="Int32" />
+          <NavigationProperty Name="data_proccess" Relationship="Self.FK_data_proccess_class_data" FromRole="class_data" ToRole="data_proccess" />
+        </EntityType>
+        <EntityType Name="data_proccess">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_procces" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="number_process" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date_process" Type="DateTime" Precision="0" />
+          <Property Name="depter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="location_depter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="department_depter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="creditor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="location_creditor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="department_creditor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="give_date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="class_id" Type="Int32" />
+          <NavigationProperty Name="class_data" Relationship="Self.FK_data_proccess_class_data" FromRole="data_proccess" ToRole="class_data" />
+        </EntityType>
+        <Association Name="FK_data_proccess_class_data">
+          <End Role="class_data" Type="Self.class_data" Multiplicity="0..1" />
+          <End Role="data_proccess" Type="Self.data_proccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class_data">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data_proccess">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="storeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="class_data" EntityType="Self.class_data" />
+          <EntitySet Name="data_proccess" EntityType="Self.data_proccess" />
+          <AssociationSet Name="FK_data_proccess_class_data" Association="Self.FK_data_proccess_class_data">
+            <End Role="class_data" EntitySet="class_data" />
+            <End Role="data_proccess" EntitySet="data_proccess" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="storeModelStoreContainer" CdmEntityContainer="storeEntities">
+          <EntitySetMapping Name="class_data">
+            <EntityTypeMapping TypeName="storeModel.class_data">
+              <MappingFragment StoreEntitySet="class_data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code_class" ColumnName="code_class" />
+                <ScalarProperty Name="name_class" ColumnName="name_class" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="number_of_type" ColumnName="number_of_type" />
+                <ScalarProperty Name="nsn" ColumnName="nsn" />
+                <ScalarProperty Name="s" ColumnName="s" />
+                <ScalarProperty Name="d" ColumnName="d" />
+                <ScalarProperty Name="mother_group" ColumnName="mother_group" />
+                <ScalarProperty Name="store_group" ColumnName="store_group" />
+                <ScalarProperty Name="store_capacity" ColumnName="store_capacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="data_proccess">
+            <EntityTypeMapping TypeName="storeModel.data_proccess">
+              <MappingFragment StoreEntitySet="data_proccess">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type_procces" ColumnName="type_procces" />
+                <ScalarProperty Name="number_process" ColumnName="number_process" />
+                <ScalarProperty Name="date_process" ColumnName="date_process" />
+                <ScalarProperty Name="depter" ColumnName="depter" />
+                <ScalarProperty Name="location_depter" ColumnName="location_depter" />
+                <ScalarProperty Name="department_depter" ColumnName="department_depter" />
+                <ScalarProperty Name="creditor" ColumnName="creditor" />
+                <ScalarProperty Name="location_creditor" ColumnName="location_creditor" />
+                <ScalarProperty Name="department_creditor" ColumnName="department_creditor" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="give_date" ColumnName="give_date" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

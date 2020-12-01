@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="storeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="class_data">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code_class" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="name_class" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="number_of_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nsn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="s" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="d" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mother_group" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="store_group" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="store_capacity" Type="Int32" />
+    <NavigationProperty Name="data_proccess" Relationship="Self.FK_data_proccess_class_data" FromRole="class_data" ToRole="data_proccess" />
+  </EntityType>
+  <EntityType Name="data_proccess">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type_procces" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="number_process" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date_process" Type="DateTime" Precision="0" />
+    <Property Name="depter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="location_depter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="department_depter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="creditor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="location_creditor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="department_creditor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="count" Type="Int32" />
+    <Property Name="give_date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="class_id" Type="Int32" />
+    <NavigationProperty Name="class_data" Relationship="Self.FK_data_proccess_class_data" FromRole="data_proccess" ToRole="class_data" />
+  </EntityType>
+  <Association Name="FK_data_proccess_class_data">
+    <End Role="class_data" Type="Self.class_data" Multiplicity="0..1" />
+    <End Role="data_proccess" Type="Self.data_proccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class_data">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="data_proccess">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="storeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="class_data" EntityType="Self.class_data" />
+    <EntitySet Name="data_proccess" EntityType="Self.data_proccess" />
+    <AssociationSet Name="FK_data_proccess_class_data" Association="Self.FK_data_proccess_class_data">
+      <End Role="class_data" EntitySet="class_data" />
+      <End Role="data_proccess" EntitySet="data_proccess" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

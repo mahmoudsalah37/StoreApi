@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="storeModelStoreContainer" CdmEntityContainer="storeEntities">
+    <EntitySetMapping Name="class_data">
+      <EntityTypeMapping TypeName="storeModel.class_data">
+        <MappingFragment StoreEntitySet="class_data">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code_class" ColumnName="code_class" />
+          <ScalarProperty Name="name_class" ColumnName="name_class" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="number_of_type" ColumnName="number_of_type" />
+          <ScalarProperty Name="nsn" ColumnName="nsn" />
+          <ScalarProperty Name="s" ColumnName="s" />
+          <ScalarProperty Name="d" ColumnName="d" />
+          <ScalarProperty Name="mother_group" ColumnName="mother_group" />
+          <ScalarProperty Name="store_group" ColumnName="store_group" />
+          <ScalarProperty Name="store_capacity" ColumnName="store_capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="data_proccess">
+      <EntityTypeMapping TypeName="storeModel.data_proccess">
+        <MappingFragment StoreEntitySet="data_proccess">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type_procces" ColumnName="type_procces" />
+          <ScalarProperty Name="number_process" ColumnName="number_process" />
+          <ScalarProperty Name="date_process" ColumnName="date_process" />
+          <ScalarProperty Name="depter" ColumnName="depter" />
+          <ScalarProperty Name="location_depter" ColumnName="location_depter" />
+          <ScalarProperty Name="department_depter" ColumnName="department_depter" />
+          <ScalarProperty Name="creditor" ColumnName="creditor" />
+          <ScalarProperty Name="location_creditor" ColumnName="location_creditor" />
+          <ScalarProperty Name="department_creditor" ColumnName="department_creditor" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="give_date" ColumnName="give_date" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

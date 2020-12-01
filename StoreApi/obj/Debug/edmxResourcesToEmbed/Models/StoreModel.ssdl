@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="storeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="class_data">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code_class" Type="varchar(max)" />
+    <Property Name="name_class" Type="varchar(max)" />
+    <Property Name="location" Type="nvarchar(max)" />
+    <Property Name="number_of_type" Type="nvarchar(max)" />
+    <Property Name="nsn" Type="nvarchar(max)" />
+    <Property Name="s" Type="nvarchar(max)" />
+    <Property Name="d" Type="nvarchar(max)" />
+    <Property Name="mother_group" Type="nvarchar(max)" />
+    <Property Name="store_group" Type="nvarchar(max)" />
+    <Property Name="store_capacity" Type="int" />
+  </EntityType>
+  <EntityType Name="data_proccess">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type_procces" Type="nvarchar(max)" />
+    <Property Name="number_process" Type="nvarchar(max)" />
+    <Property Name="date_process" Type="date" />
+    <Property Name="depter" Type="nvarchar(max)" />
+    <Property Name="location_depter" Type="nvarchar(max)" />
+    <Property Name="department_depter" Type="nvarchar(max)" />
+    <Property Name="creditor" Type="nvarchar(max)" />
+    <Property Name="location_creditor" Type="nvarchar(max)" />
+    <Property Name="department_creditor" Type="nvarchar(max)" />
+    <Property Name="count" Type="int" />
+    <Property Name="give_date" Type="nvarchar(max)" />
+    <Property Name="class_id" Type="int" />
+  </EntityType>
+  <Association Name="FK_data_proccess_class_data">
+    <End Role="class_data" Type="Self.class_data" Multiplicity="0..1" />
+    <End Role="data_proccess" Type="Self.data_proccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class_data">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="data_proccess">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="storeModelStoreContainer">
+    <EntitySet Name="class_data" EntityType="Self.class_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="data_proccess" EntityType="Self.data_proccess" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_data_proccess_class_data" Association="Self.FK_data_proccess_class_data">
+      <End Role="class_data" EntitySet="class_data" />
+      <End Role="data_proccess" EntitySet="data_proccess" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
